@@ -14,6 +14,12 @@
 * Пожертвования
 
 Каждый пользователь может сделать пожертвование и сопроводить его комментарием. Пожертвования не целевые: они вносятся в фонд, а не в конкретный проект. Каждое полученное пожертвование автоматически добавляется в первый открытый проект, который ещё не набрал нужную сумму. Если пожертвование больше нужной суммы или же в Фонде нет открытых проектов — оставшиеся деньги ждут открытия следующего проекта. При создании нового проекта все неинвестированные пожертвования автоматически вкладываются в новый проект.
+
+* Добавлена возможность выгрузки отчёта по пожертвованиям в google
+
+Доступна по адрессу http://127.0.0.1:8000/google/
+![Отчёт](https://i.ibb.co/Rpk57y5/2023-04-26-14-54-36.png)
+
 ___
 ## Как запустить проект
 
@@ -58,6 +64,33 @@ APP_TITLE=Благотворительный фонд котиков
 DESCRIPTION=Сбор пожертвований на нужды хвостатых
 DATABASE_URL=your_database_url
 SECRET=your_secret_key (any symbols)
+Далее идут переменные окружения вашего сервисного аккаунта google sheets 
+EMAIL=Ваша почта
+TYPE=service_account
+PROJECT_ID=
+PRIVATE_KEY_ID=
+PRIVATE_KEY=
+CLIENT_EMAIL=
+CLIENT_ID=
+AUTH_URI=https://accounts.google.com/o/oauth2/auth
+TOKEN_URI=https://oauth2.googleapis.com/token
+AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
+CLIENT_X509_CERT_URL=
+```
+Пример данных сервисного аккаунта:
+```
+{
+  "type": "service_account",
+  "project_id": "fluid-dreamer-343515",
+  "private_key_id": "47169bcc4c4......8a331d4b769eb1ff",
+  "private_key": "-----BEGIN PRIVATE KEY-----\n....bTxwcv\n-----END PRIVATE KEY-----\n",
+  "client_email": "test-testovich@fluid-dreamer-343515.iam.gserviceaccount.com",
+  "client_id": "114239083367454348646",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/test-testovich%40fluid-dreamer-343515.iam.gserviceaccount.com"
+} 
 ```
 Выполнить миграции:
 ```

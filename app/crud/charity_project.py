@@ -23,7 +23,7 @@ class CRUDCharityProject(CRUDBase):
         )
         db_room_id = db_room_id.scalars().first()
         return db_room_id
-    
+
     async def get_projects_by_completion_rate(
             self,
             session: AsyncSession,
@@ -31,11 +31,11 @@ class CRUDCharityProject(CRUDBase):
         """Возращает список закрытых проектов отфильрованных по скорости сбора средств"""
         projects = await session.execute(
             select(
-            CharityProject.name,
-            CharityProject.description,
-            # SQLite не поддерживает человеческие вычисления даты в запросе,
-            # это единственный вариант который вернет промежуток времени в секундах
-            ((func.julianday(CharityProject.close_date) - func.julianday(CharityProject.create_date))* 86400).label('time'),
+                CharityProject.name,
+                CharityProject.description,
+                # SQLite не поддерживает человеческие вычисления даты в запросе,
+                # это единственный вариант который вернет промежуток времени в секундах
+                ((func.julianday(CharityProject.close_date) - func.julianday(CharityProject.create_date)) * 86400).label('time'),
             ).where(
                 CharityProject.fully_invested == true()
             ).order_by('time')
