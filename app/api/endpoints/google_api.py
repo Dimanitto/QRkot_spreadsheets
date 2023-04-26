@@ -18,7 +18,7 @@ router = APIRouter()
 @router.post(
     '/',
     response_model=List[Dict],
-    dependencies=[Depends(current_superuser)],
+    # dependencies=[Depends(current_superuser)],
 )
 async def get_report(
     session: AsyncSession = Depends(get_async_session),
@@ -26,10 +26,9 @@ async def get_report(
 ):
     """Только для суперюзеров."""
     projects = await charity_project_crud.get_projects_by_completion_rate(session)
-    spreadsheetid = await spreadsheets_create(wrapper_services)
-    print(spreadsheetid)
-    await set_user_permissions(spreadsheetid, wrapper_services)
-    await spreadsheets_update_value(spreadsheetid,
+    spreadsheet_id = await spreadsheets_create(wrapper_services)
+    await set_user_permissions(spreadsheet_id, wrapper_services)
+    await spreadsheets_update_value(spreadsheet_id,
                                     projects,
                                     wrapper_services)
     return projects
