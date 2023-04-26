@@ -10,11 +10,11 @@ SPREADSHEET_BODY = {
                    'locale': 'ru_RU'
                    },
     'sheets': [{'properties': {'sheetType': 'GRID',
-                            'sheetId': 0,
-                            'title': 'Лист1',
-                            'gridProperties': {'rowCount': 100,
-                                               'columnCount': 11}}}]
-    }
+                               'sheetId': 0,
+                               'title': 'Лист1',
+                               'gridProperties': {'rowCount': 100,
+                                                  'columnCount': 11}}}]
+}
 
 
 async def spreadsheets_create(wrapper_services: Aiogoogle) -> str:
